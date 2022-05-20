@@ -1,0 +1,65 @@
+[
+    {
+      "Title": "The Lord of the Rings",
+      "Rating": "4.8",
+      "Released": "19 Dec 2001",
+      "Actors": [
+        "Elijah Wood",
+        "Orlando Bloom",
+        "Ian McKellen",
+        "Viggo Mortensen"
+      ],
+      "Poster": "1.webp"
+    },
+    {
+      "Title": "Mad Max",
+      "Rating": "4.6",
+      "Released": "14 May 2014",
+      "Actors": [
+        "Tom Hardy",
+        "Chalize Theron",
+        "Nicholas Hoult",
+        "Riley Keough"
+      ],
+      "Poster": "2.jpg"
+    },
+    {
+      "Title": "Sherlock Holmes",
+      "Rating": "4.9",
+      "Released": "18 Dec 2011",
+      "Actors": [
+        "Robert Downey Jr.",
+        "Jude Law",
+        "Rachel Mcadams",
+        "Mark Strong"
+      ],
+      "Poster": "3.jpg"
+    },
+  
+    {
+      "Title": "Apocalypto",
+      "Rating": "4.4",
+      "Released": "22 may 2007",
+      "Actors": [
+        "Rudy Young",
+        "Dalia Hernandez",
+        "Raoul Trujillo",
+        "Iazua Larios"
+      ],
+      "Poster": "5.jpg"
+    },
+  
+    {
+      "Title": "John Wick",
+      "Rating": "4.8",
+      "Released": "17 May 2019",
+      "Actors": [
+        "Keanu Reeves",
+        " Halle Berry",
+        " Ian McShane ",
+        " Laurence Fishburne"
+      ],
+      "Poster": "4.jpg"
+    }
+  ]
+  
