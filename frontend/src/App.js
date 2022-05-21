@@ -9,7 +9,7 @@ function App() {
   let [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch("./movies.json")
+    fetch("./api/data")
       .then((response) => response.json())
       .then(setMovies);
   }, []);
