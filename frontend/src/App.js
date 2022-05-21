@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 
+
 function App() {
   let [movies, setMovies] = useState([]);
 

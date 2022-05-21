@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {useRef,useState } from 'react';
 import image from "./1.jpg";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 function Header(props){
     return(
@@ -91,8 +93,11 @@ export function Form({addmovies}) {
   };
 
   return (
+    <Container fluid>
     <div id="uplode">
+      <Row>
       <h3> Add New Movie </h3>
+      </Row>
       <form method="post" id="form1" onSubmit={submit}>
         <div className="file">
         <label> Image</label>
@@ -161,7 +166,7 @@ export function Form({addmovies}) {
 
       </script>
     </div>
-    
+    </Container>
   );
 }
 
