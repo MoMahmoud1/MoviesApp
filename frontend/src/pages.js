@@ -131,24 +131,31 @@ export function AddReview({addmovies}) {
     addmovies(info);
   };
 
+
   const formName = useRef();
   const formDate = useRef();
   const formActors = useRef();
-  const formPoster = useRef();
+  // const formPoster = useRef();
   const formRating = useRef();
+  let [formPoster, setPoster] = useState("");
+
+
   const submit = (e) => {
+
     e.preventDefault();
+
     const name = formName.current.value;
     const date = formDate.current.value;
     const actors = formActors.current.value;
-    const poster = formPoster.current.value;
+    const poster =  setPoster("");
     const rating = formRating.current.value;
+
 
     addMovieDatabase(name, date, actors.split(','), poster, rating);
     formName.current.value = '';
     formDate.current.value = '';
     formActors.current.value = '';
-    formPoster.current.value = '';
+    formPoster.current.value = setPoster("");
     formRating.current.value = '';
   };
 
@@ -162,14 +169,16 @@ export function AddReview({addmovies}) {
           
               <div className="form-outline">
           
-                  <label className="form-label" htmlFor="formControlLg">Image</label>
+                  {/* <label className="form-label" htmlFor="formControlLg">Image</label>
                   <select ref={formPoster} id="formControlLg" className="form-control form-control-lg" >
                   {/* <option value=''>Select Image</option> */}
-                    <option value='t.jpg'>Termenator</option>
+                    {/* <option value='t.jpg'>Termenator</option>
                     <option value='v.avif'>Venom</option>
                     <option value='u.jpg'>Uncharted</option>
                     <option value='r.jpg'>Rocky</option>
-                    </select>
+                    </select> */} 
+                    <label className="form-label h4">Movie Poster:<input className="form-control" type="file" accept=".png,.jfif,.jpg,.jpeg"
+                                onChange = {e => setPoster(e.target.files[0])} required /></label>
                     <br/><br/>
                     <br></br>
               </div>
@@ -233,8 +242,6 @@ export function AddReview({addmovies}) {
     </Container>
   );
 }
-
-
 export function Reviews({addmovies}){
     return(
       <>
