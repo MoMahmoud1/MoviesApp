@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {useRef,useState } from 'react';
 import image from "./2.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button,Container,Row ,Col,Form, Alert} from'react-bootstrap';
+import {Button,Container,Row ,Col,Form, Alert,Card} from'react-bootstrap';
 import {FaGithub} from 'react-icons/fa'; 
 import {FaLinkedin} from 'react-icons/fa'; 
 import {AiOutlineMail} from 'react-icons/ai';
@@ -251,29 +251,28 @@ export default function Movie({
   onRemove = (f) => f,
 }) { 
 return (
-    <div className="movie">
+   <Container style={{width:"600px"}}>
+     <Row>
+        <Col>
+            <header className="app-header">
+              <Card className="mb-3" style={{color:"#000"}}>
+                <Button className="delete" onClick={() => {  onRemove(Title);}}>
+                    Remove
+                </Button>
+                <Card.Title>Movie Name: {Title}</Card.Title>
+              
+                <Card.Text> Actors :{Actors[0]} {Actors[1]} {Actors[2]}  {Actors[3]}</Card.Text>
 
-       <Button className="delete"
-          onClick={() => {  onRemove(Title);
-          }}
-        >
-          Remove
-        </Button>
-          <h2 style={{color:"blue"}}>Movie Name: {Title}</h2>
-          <p>
-            Actors :{Actors[0]} {Actors[1]} {Actors[2]}  {Actors[3]}
-
-            {/* Actors: {Actors.map((actor,i)=> (actor))} */}
-          </p>
-          <p>Rating : {Rating}</p>
-          <p> Released: {Released}</p>
-          <img className="poster" src={"./images/" + Poster} alt={Title}
-          width={600}
-          height={500}
-        />
-        <p></p>
-       
-    </div>
+                <Card.Text>Rating : {Rating}</Card.Text>
+                <Card.Text> Released: {Released}</Card.Text>
+                <div className="bg-image hover-overlay hover-zoom hover-shadow ripple">
+                <Card.Img src={"./images/" + Poster} alt={Title} style={{height:"500px"}}/>
+                </div>  
+              </Card>    
+            </header>  
+        </Col>
+      </Row>        
+    </Container> 
     
   );
   
