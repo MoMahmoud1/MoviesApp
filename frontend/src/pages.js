@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {useRef,useState } from 'react';
-import image from "./1.jpg";
+import image from "./2.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Alert,Container,Row ,Col,Form} from'react-bootstrap';
+import {Button,Container,Row ,Col,Form} from'react-bootstrap';
 
 function Header(props){
     return(
@@ -18,13 +18,10 @@ function Header(props){
   }
   
   
-  function Main(props){
+  function Main(){
     return(
       <main>
-        <div id="head">
-        <p>The Most {props.adjective} Movies Reviews Wepsite</p>
-        </div>
-        <img  className="logo" src={image} alt="site logo "/>  
+        <img  className="logo" src={image} alt="site logo " style={{borderRadius:"20px",width:"50%"}}/>  
       </main>
     
     );
@@ -41,17 +38,37 @@ function Header(props){
 
 export function Home1(){
     return(
-        <div className="App">
-       <Header name="MO"/>
-       <div id="nav">
-            <Link to="/">Home</Link>
-        </div>
-        <div id="nav2">
-          <Link to = "reviews"> Add Movie</Link>
-        </div>
-          <Main adjective = "Amazing" />
-        </div>
-
+      <>
+       <Container fluid="md" style={{backgroundColor:" #f2f2f2", borderRadius:"20px"}} >
+          <Row >
+              <Header name="MO"/>
+                <Button
+                 style={{width: "50%",
+                 backgroundColor:"#4CAF50",
+                 color: "white",
+                 padding:"14px 20px",
+                 margin: "8px 0",
+                 border: "none",
+                 borderRadius:"20px",
+                 cursor:"pointer"}} >
+                  <Link to="/">Home</Link>
+                  </Button>
+                  <Button
+                   style={{width: "50%",
+                   backgroundColor:"#4CAF50",
+                   color: "white",
+                   padding:"14px 20px",
+                   margin: "8px 0",
+                   border: "none",
+                   borderRadius:"20px",
+                   cursor:"pointer"}}>
+                  <Link to = "reviews"> Add Movie</Link> 
+                  </Button>  
+                  <Main/>     
+          </Row>
+      </Container>   
+     
+      </>
     );
 }
 
@@ -94,7 +111,6 @@ export function AddReview({addmovies}) {
 
   return (
     <Container fluid="md" style={{backgroundColor:" #f2f2f2", borderRadius:"20px"}} >
-    
           <Row >
           <Col>
               <h3> Add New Movie </h3>
@@ -105,6 +121,7 @@ export function AddReview({addmovies}) {
           
                   <label className="form-label" htmlFor="formControlLg">Image</label>
                   <select ref={formPoster} id="formControlLg" className="form-control form-control-lg" >
+                  {/* <option value=''>Select Image</option> */}
                     <option value='t.jpg'>Termenator</option>
                     <option value='v.avif'>Venom</option>
                     <option value='u.jpg'>Uncharted</option>
@@ -114,7 +131,7 @@ export function AddReview({addmovies}) {
                     <br></br>
               </div>
               <div className={"form-outline"}>
-                    <label className={"form-label"} htmlFor={"formControlLg"} >Title</label>
+                    <label className={"form-label"} htmlFor={"formControlLg" } >Title</label>
                     <input  id={"formControlLg"} className={"form-control form-control-lg"}
                       type={'text'}
                       ref={formName}
