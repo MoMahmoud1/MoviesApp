@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {useRef,useState } from 'react';
 import image from "./1.jpg";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Button, Alert,Container,Row ,Col} from'react-bootstrap';
 
 function Header(props){
     return(
@@ -93,78 +94,87 @@ export function Form({addmovies}) {
 
   return (
     <Container fluid>
-    <div id="uplode">
-      <div className="container">
-      <h3> Add New Movie </h3>
-      </div>
-      <form method="post" id="form1" onSubmit={submit}>
-        <div className="file">
-        <label> Image</label>
-        <select ref={formPoster} >
-          <option value='t.jpg'>Termenator</option>
-          <option value='v.avif'>Venom</option>
-          <option value='u.jpg'>Uncharted</option>
-          <option value='r.jpg'>Rocky</option>
-          </select><br/><br/>
-          {/* <input
-            type={'file'}
-            name={'file'}
-            accept={'.jpg,.png,.jpeg'}
-            ref={formPoster}
-            required
-          ></input> */}
-          <br></br>
-        </div>
-        <div className="input">
-          <div className="name">
-            <label htmlFor={'name'}>Title</label>
+    
+          {/* <div className="container"> */}
+          <Row  className="justify-content-center" >
+          <h3> Add New Movie </h3>
+          </Row>
+          {/* </div> */}
+          <form method="post" id="" onSubmit={submit}>
+          <Row>
+            {/* <div className="file"> */}
+              <label> Image</label>
+              <select ref={formPoster} >
+                <option value='t.jpg'>Termenator</option>
+                <option value='v.avif'>Venom</option>
+                <option value='u.jpg'>Uncharted</option>
+                <option value='r.jpg'>Rocky</option>
+                </select><br/><br/>
+                <br></br>
+            {/* </div> */}
+            </Row>
+        
+            {/* <div className="input"> */}
+            <Row>
+              {/* <div className="name"> */}
+              
+                <label htmlFor={'name'}>Title</label>
 
-            <input
-              className="name1"
-              type={'text'}
-              ref={formName}
-              required
-            ></input>
-            <br></br>
-          </div>
-          <div className="actor">
-            <label  htmlFor={'actor'} >Actors</label>
-            <input placeholder ="@1 @2 @3 @4"
-              className="actor1"
-              type={'text'}
-              ref={formActors}
-              required
-            ></input>
-            <br></br>
-          </div>
-          <label className="rate1" htmlFor={'rate'}>Rate</label>
-          <div className="rate2">
-            <select  ref={formRating} required >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <br></br>
-          </div>
-          <div className="released">
-            <label  htmlFor={'rate'}>Released</label>
-            <input
-              className="released1"
-              type={'date'}
-              ref={formDate}
-              required
-            ></input>
-            <br></br>
-          </div>
-        </div>
-        <input type={'submit'} value={'sumbit'}></input>
-      </form>
-      <script>
-
-      </script>
-    </div>
+                <input
+                  className="name1"
+                  type={'text'}
+                  ref={formName}
+                  required
+                ></input>
+                <br></br>
+                
+              {/* </div> */}
+              </Row>
+              <Row>
+              {/* <div className="actor"> */}
+                <label  htmlFor={'actor'} >Actors</label>
+                <input placeholder ="@1 @2 @3 @4"
+                  className="actor1"
+                  type={'text'}
+                  ref={formActors}
+                  required
+                ></input>
+                <br></br>
+              {/* </div> */}
+              </Row>
+              <Row>
+              <label className="rate1" htmlFor={'rate'}>Rate</label>
+              {/* <div className="rate2"> */}
+                <select  ref={formRating} required >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <br></br>
+              {/* </div> */}
+              </Row>
+              <Row>
+              {/* <div className="released"> */}
+                <label  htmlFor={'rate'}>Released</label>
+                <input
+                  className="released1"
+                  type={'date'}
+                  ref={formDate}
+                  required
+                ></input>
+                <br></br>
+              {/* </div> */}
+              </Row>
+            {/* </div> */}
+            
+            <Alert variant="primary" >Click to submit</Alert>
+            <Button type={"submit"} value={"sumbit"}>
+            {/* <input type={'submit'} value={'sumbit'}></input> */}
+            submit
+            </Button>
+          </form>
     </Container>
   );
 }
@@ -172,13 +182,12 @@ export function Form({addmovies}) {
 
 export function Reviews({addmovies}){
     return(
-        <div>
-            <div id="nav1">
+      <>
+          <Button as={Col} variant="secondary"  className="mx-2">
                 <Link to="/">Home</Link>
-            </div>
+          </Button>
             <Form addmovies={addmovies}/>
-        </div>
-
+      </>
     )
 }
 
