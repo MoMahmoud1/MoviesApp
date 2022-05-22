@@ -4,6 +4,10 @@ import {useRef,useState } from 'react';
 import image from "./2.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button,Container,Row ,Col,Form, Alert} from'react-bootstrap';
+import {FaGithub} from 'react-icons/fa'; 
+import {FaLinkedin} from 'react-icons/fa'; 
+import {AiOutlineMail} from 'react-icons/ai';
+import {MdPictureAsPdf} from 'react-icons/md';
 
 function Header(props){
     return(
@@ -30,29 +34,38 @@ function Header(props){
   function Footer(props){
     return(
     
-        <footer class="page-footer font-small blue pt-4">
-          <div class="container-fluid text-center text-md-left">
-            <div class="row">
-              <div class="col-md-6 mt-md-0 mt-3">
-                <h5 class="text-uppercase">MOhamed  FULL STACK DEVELOPER </h5>
-                <p>Email: Mohamed.Mahmoud70@ed.cna.nl.ca</p>
+        <footer className="page-footer font-small blue pt-4">
+          <div className="container-fluid text-center text-md-left">
+            <div className="row">
+              <div className="col-md-6 mt-md-0 mt-3">
+                <h5 className="text-uppercase">MOhamed  FULL STACK DEVELOPER </h5>
+                
+                
+                <ul className="list-unstyled">
+                  <li>
+                  <AiOutlineMail> Mohamed.Mahmoud70@ed.cna.nl.ca</AiOutlineMail>
+                  <a>Mohamed.Mahmoud70@ed.cna.nl.ca</a>
+                  </li>
+                </ul>
 
               </div>
-                  <div class="col-md-3 mb-md-0 mb-3">
-                <h5 class="text-uppercase">Links</h5>
+                  <div className="col-md-3 mb-md-0 mb-3">
+                <h5 className="text-uppercase">Links</h5>
 
-                <ul class="list-unstyled">
+                <ul className="list-unstyled">
                   <li>
+                    <FaGithub> </FaGithub>
                     <a href="https://github.com/mohamed-baioumy">Github</a>
                   </li>
                   <li>
+                    <FaLinkedin></FaLinkedin>
                     <a href="https://www.linkedin.com/in/mohamed-mahmoud-0b618112a">linkedin</a>
+            
                   </li>
                   <li>
-                    <a href="#!">Link 3</a>
-                  </li>
-                  <li>
-                    <a href="#!">Link 4</a>
+                  <MdPictureAsPdf></MdPictureAsPdf>
+                    <a href=" https://acrobat.adobe.com/link/review?uri=urn:aaid:scds:US:669061e0-3a6e-3412-b598-2566204b116c">Resume</a>
+            
                   </li>
                 </ul>
 
@@ -131,7 +144,7 @@ export function AddReview({addmovies}) {
     const poster = formPoster.current.value;
     const rating = formRating.current.value;
 
-    addMovieDatabase(name, date, actors, poster, rating);
+    addMovieDatabase(name, date, actors.split(','), poster, rating);
     formName.current.value = '';
     formDate.current.value = '';
     formActors.current.value = '';
