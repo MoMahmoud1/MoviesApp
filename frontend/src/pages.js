@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {useRef,useState } from 'react';
 import image from "./2.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button,Container,Row ,Col,Form} from'react-bootstrap';
+import {Button,Container,Row ,Col,Form, Alert} from'react-bootstrap';
 
 function Header(props){
     return(
@@ -21,16 +21,47 @@ function Header(props){
   function Main(){
     return(
       <main>
-        <img  className="logo" src={image} alt="site logo " style={{borderRadius:"20px",width:"50%"}}/>  
+        <img  className="logo" src={image} alt="site logo " style={{borderRadius:"20px",width:"50%",height:"50%"}}/>  
       </main>
-    
     );
   }
   
   
   function Footer(props){
     return(
-      <footer>
+    
+        <footer class="page-footer font-small blue pt-4">
+          <div class="container-fluid text-center text-md-left">
+            <div class="row">
+              <div class="col-md-6 mt-md-0 mt-3">
+                <h5 class="text-uppercase">MOhamed  FULL STACK DEVELOPER </h5>
+                <p>Email: Mohamed.Mahmoud70@ed.cna.nl.ca</p>
+
+              </div>
+                  <div class="col-md-3 mb-md-0 mb-3">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="https://github.com/mohamed-baioumy">Github</a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/in/mohamed-mahmoud-0b618112a">linkedin</a>
+                  </li>
+                  <li>
+                    <a href="#!">Link 3</a>
+                  </li>
+                  <li>
+                    <a href="#!">Link 4</a>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+          
+
+          </div>
+
         <p>CopyRight {props.year}</p>
       </footer>
     );
@@ -39,7 +70,7 @@ function Header(props){
 export function Home1(){
     return(
       <>
-       <Container fluid="md" style={{backgroundColor:" #f2f2f2", borderRadius:"20px"}} >
+     <Container>
           <Row >
               <Header name="MO"/>
                 <Button
@@ -65,9 +96,8 @@ export function Home1(){
                   <Link to = "reviews"> Add Movie</Link> 
                   </Button>  
                   <Main/>     
-          </Row>
-      </Container>   
-     
+          </Row> 
+      </Container>
       </>
     );
 }
@@ -209,12 +239,13 @@ export default function Movie({
 }) { 
 return (
     <div className="movie">
-       <button className="delete"
+
+       <Button className="delete"
           onClick={() => {  onRemove(Title);
           }}
         >
           Remove
-        </button>
+        </Button>
           <h2 style={{color:"blue"}}>Movie Name: {Title}</h2>
           <p>
             Actors :{Actors[0]} {Actors[1]} {Actors[2]}  {Actors[3]}
@@ -254,7 +285,9 @@ export function Home2({ movies = [], onRemoveMovie = (f) => f }){
         ))}
       </div> 
       <div>
+    <Alert>
      <Footer year = {new Date().getFullYear()} />
+    </Alert>
      </div>
       </>
 
