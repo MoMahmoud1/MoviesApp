@@ -155,7 +155,7 @@ export function AddReview({addmovies}) {
     formName.current.value = '';
     formDate.current.value = '';
     formActors.current.value = '';
-    formPoster.current.value = setPoster("");
+    formPoster.current.value=formPoster;
     formRating.current.value = '';
   };
 
