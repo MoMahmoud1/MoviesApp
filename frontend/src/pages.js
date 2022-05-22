@@ -93,7 +93,7 @@ export function AddReview({addmovies}) {
   };
 
   return (
-    <Container>
+    <Container fluid="md" style={{backgroundColor:" #f2f2f2", borderRadius:"20px"}} >
     
           <Row >
           <Col>
@@ -103,8 +103,8 @@ export function AddReview({addmovies}) {
           
               <div className="form-outline">
           
-                  <label htmlFor="exampleFormControlInput1">Image</label>
-                  <select ref={formPoster}  className="form-control" id="exampleFormControlSelect1" >
+                  <label className="form-label" htmlFor="formControlLg">Image</label>
+                  <select ref={formPoster} id="formControlLg" className="form-control form-control-lg" >
                     <option value='t.jpg'>Termenator</option>
                     <option value='v.avif'>Venom</option>
                     <option value='u.jpg'>Uncharted</option>
@@ -113,9 +113,9 @@ export function AddReview({addmovies}) {
                     <br/><br/>
                     <br></br>
               </div>
-              <div className="form-group">
-                    <label htmlFor="exampleFormControlInput1">Title</label>
-                    <input className="form-control"
+              <div className={"form-outline"}>
+                    <label className={"form-label"} htmlFor={"formControlLg"} >Title</label>
+                    <input  id={"formControlLg"} className={"form-control form-control-lg"}
                       type={'text'}
                       ref={formName}
                       required
@@ -157,7 +157,16 @@ export function AddReview({addmovies}) {
                     <br></br>
                     <br></br>
               </div>
-                <Button type={"submit"} value={"sumbit"}> Submit </Button>
+                <Button type={"submit"} value={"sumbit"}
+                style={{width: "100%",
+                  backgroundColor:"#4CAF50",
+                  color: "white",
+                  padding:"14px 20px",
+                  margin: "8px 0",
+                  border: "none",
+                  borderRadius:"20px",
+                  cursor:"pointer"}}
+                > Submit </Button>
               </Form>
               </Col>
             </Row>
@@ -169,7 +178,7 @@ export function AddReview({addmovies}) {
 export function Reviews({addmovies}){
     return(
       <>
-          <Button as={Col} variant="secondary"  className="mx-2">
+          <Button style={{backgroundColor:"aqua",width:"150px"}}>
                 <Link to="/">Home</Link>
           </Button>
             < AddReview addmovies={addmovies}/>
