@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {useRef,useState } from 'react';
 import image from "./1.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Alert,Container,Row ,Col} from'react-bootstrap';
+import {Button, Alert,Container,Row ,Col,Form} from'react-bootstrap';
 
 function Header(props){
     return(
@@ -55,7 +55,7 @@ export function Home1(){
     );
 }
 
-export function Form({addmovies}) {
+export function AddReview({addmovies}) {
   const [values, setValues] = useState(null);
 
 
@@ -93,72 +93,73 @@ export function Form({addmovies}) {
   };
 
   return (
-    <Container fluid>
+    <Container>
     
-          <Row  className="justify-content-center" >
+          <Row >
+          <Col>
               <h3> Add New Movie </h3>
               
-              <form method="post" id="" onSubmit={submit}>
+              <Form method="post" onSubmit={submit}>
           
-              
-                  <label> Image</label>
-                  <select ref={formPoster} >
+              <div className="form-outline">
+          
+                  <label htmlFor="exampleFormControlInput1">Image</label>
+                  <select ref={formPoster}  className="form-control" id="exampleFormControlSelect1" >
                     <option value='t.jpg'>Termenator</option>
                     <option value='v.avif'>Venom</option>
                     <option value='u.jpg'>Uncharted</option>
                     <option value='r.jpg'>Rocky</option>
-                    </select><br/><br/>
+                    </select>
+                    <br/><br/>
                     <br></br>
-              
-                    <label htmlFor={'name'}>Title</label>
-
-                    <input
-                      className="name1"
+              </div>
+              <div className="form-group">
+                    <label htmlFor="exampleFormControlInput1">Title</label>
+                    <input className="form-control"
                       type={'text'}
                       ref={formName}
                       required
                     ></input>
+              </div>      
                     <br></br>
-              
-                    <label  htmlFor={'actor'} >Actors</label>
-                    <input placeholder ="@1 @2 @3 @4"
-                      className="actor1"
+                    <br></br>
+
+              <div className="form-group">
+                    <label htmlFor="exampleFormControlInput1">Actors</label>
+                    <input className="form-control"
                       type={'text'}
                       ref={formActors}
                       required
                     ></input>
                     <br></br>
-                
-                
-                  <label className="rate1" htmlFor={'rate'}>Rate</label>
-              
-                    <select  ref={formRating} required >
+                    <br></br>
+              </div>     
+
+              <div className="form-group">
+                  <label htmlFor="exampleFormControlInput1">Rate</label>
+                    <select  ref={formRating} required  className="form-control" id="exampleFormControlSelect1" >
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
                       <option value="5">5</option>
                     </select>
+                   <br></br>
                     <br></br>
-              
-                    <label  htmlFor={'rate'}>Released</label>
-                    <input
-                      className="released1"
+              </div>
+              <div className="form-group">
+                    <label htmlFor="exampleFormControlInput1" >Released</label>
+                    <input className="form-control"
                       type={'date'}
                       ref={formDate}
                       required
                     ></input>
                     <br></br>
-                  
-                  
-      
-                
-                <Alert variant="primary" >Click to submit</Alert>
-                <Button type={"submit"} value={"sumbit"}>
-      
-                submit
-                </Button>
-              </form>
+                    <br></br>
+              </div>
+                <Button type={"submit"} value={"sumbit"}> Submit </Button>
+              </Form>
+              </Col>
             </Row>
     </Container>
   );
@@ -171,7 +172,7 @@ export function Reviews({addmovies}){
           <Button as={Col} variant="secondary"  className="mx-2">
                 <Link to="/">Home</Link>
           </Button>
-            <Form addmovies={addmovies}/>
+            < AddReview addmovies={addmovies}/>
       </>
     )
 }
