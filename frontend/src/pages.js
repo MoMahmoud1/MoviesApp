@@ -25,7 +25,7 @@ function Header(props){
   function Main(){
     return(
       <main>
-        <img  className="logo" src={image} alt="site logo " style={{borderRadius:"20px",width:"50%",height:"50%"}}/>  
+           <img   src={image} alt="site logo " style={{borderRadius:"20px",width:"50%"}} />  
       </main>
     );
   }
@@ -265,14 +265,38 @@ return (
 
                 <Card.Text>Rating : {Rating}</Card.Text>
                 <Card.Text> Released: {Released}</Card.Text>
-                <div className="bg-image hover-overlay hover-zoom hover-shadow ripple">
-                <Card.Img src={"./images/" + Poster} alt={Title} style={{height:"500px"}}/>
-                </div>  
+              
+                  <Card.Img src={"./images/" + Poster} alt={Title} style={{height:"500px"}} />
+                
               </Card>    
             </header>  
         </Col>
       </Row>        
     </Container> 
+
+  // <div className="container d-flex align-items-center justify-content-center position-relative flex-wrap">
+  //   <div className="card d-flex position-relative flex-column">
+  //             <div className='imgContainer'>
+  //                 <img src={"./images/" + Poster} alt={Title} />
+  //             </div>
+  //             <div className="content">
+  //             <Button className="delete" onClick={() => {  onRemove(Title);}}>
+  //                  Remove
+  //              </Button>
+  //                 <h2>Name: {Title}</h2>
+  //                 <p>Actors :{Actors[0]} {Actors[1]} {Actors[2]} </p>
+  //                 <p>Released: {Released}</p>
+  //                 <p>Rating : {Rating}</p>
+  //                 <br></br>
+  //         </div>
+ 
+  //       </div>
+        
+  //     </div>
+      
+      
+
+
     
   );
   
