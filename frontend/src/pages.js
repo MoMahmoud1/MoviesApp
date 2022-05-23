@@ -262,7 +262,7 @@ return (
 
                 <Card.Text>Rating : {Rating}</Card.Text>
                 <Card.Text> Released: {Released}</Card.Text>
-                  <Card.Img src={"/images"+Poster} alt={Title+"movie poster"} style={{height:"500px"}} />
+                  <Card.Img src={"/images/"+Poster} alt={Title+"movie poster"} style={{height:"500px"}} />
               </Card>    
             </header>  
         </Col>
