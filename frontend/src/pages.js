@@ -116,47 +116,39 @@ export function Home1(){
     );
 }
 
-export function AddReview() {
-  const addMovieDatabase = async (Title, Rating, Released, Actors, Poster) => {
-    let info = {
-      "Title": Title,
-      "Rating": Rating,
-      "Released": Released,
-      "Actors": Actors,
-      "Poster": Poster.name,
-      
-    };
-    await fetch('/api/add', {
-      method: 'POST',
-      body: JSON.stringify(info),
-    })
-  };
-
-
-  const formName = useRef();
-  const formDate = useRef();
-  const formActors = useRef();
-  const formPoster = useRef();
-  const formRating = useRef();
-  const submit = (e) => {
-
-    e.preventDefault();
-
-    const name = formName.current.value;
-    const date = formDate.current.value;
-    const actors = formActors.current.value;
-    const poster =  formPoster.current.files[0];
-    const rating = formRating.current.value;
-
-
-    addMovieDatabase(name, rating, date, actors.split(','), poster );
-    formName.current.value = '';
-    formRating.current.value = '';
-    formDate.current.value = '';
-    formActors.current.value = '';
-    formPoster.current.value='';
+export function AddReview({setMovies}) {
+  
    
-  };
+    const formName = useRef();
+    const formDate = useRef();
+    const formActors= useRef();
+    const formRating= useRef();
+    let [poster, setPoster] = useState("");
+    
+
+    const submit = e => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        const name = formName.current.value;
+        const date = formDate.current.value;
+        const actors = formActors.current.value;
+
+        formData.append("Title", name);
+        formData.append("Released", date);
+        formData.append("Actors", [actors.split(",")])
+        formData.append("Poster", poster);
+        formData.append("Rating", formRating);
+
+        // onNewMovie(formData);
+
+        formName .current.value = "";
+        formDate.current.value = "";
+        formActors.current.value = [];
+        formRating.current.value = "";
+        setPoster("");
+      }
 
   return (
     <Container fluid="md" style={{backgroundColor:" #f2f2f2", borderRadius:"20px"}} >
@@ -168,7 +160,7 @@ export function AddReview() {
           
               <div className="form-outline">
                     <label className="form-label h4">Movie Poster:<input className="form-control" type="file" accept=".png,.jfif,.jpg,.jpeg"
-                               ref={formPoster}  required /></label>
+                                onChange = {e => setPoster(e.target.files[0])} required /></label>
                     <br/><br/>
                     <br></br>
               </div>
@@ -203,7 +195,7 @@ export function AddReview() {
                       <option value="4">4</option>
                       <option value="5">5</option>
                     </select>
-                   <br></br>
+                  <br></br>
                     <br></br>
               </div>
               <div className="form-group">
@@ -231,7 +223,11 @@ export function AddReview() {
             </Row>
     </Container>
   );
+
+
 }
+
+
 export function Reviews({addmovies}){
     return(
       <>
@@ -262,7 +258,7 @@ return (
 
                 <Card.Text>Rating : {Rating}</Card.Text>
                 <Card.Text> Released: {Released}</Card.Text>
-                  <Card.Img src={"/images/"+Poster} alt={Title+"movie poster"} style={{height:"500px"}} />
+                  <Card.Img src={"/images/"+Poster} alt={Title} style={{height:"500px"}} />
               </Card>    
             </header>  
         </Col>
