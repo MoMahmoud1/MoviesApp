@@ -9,6 +9,7 @@ import {FaLinkedin} from 'react-icons/fa';
 import {AiOutlineMail} from 'react-icons/ai';
 import {MdPictureAsPdf} from 'react-icons/md';
 
+
 function Header(props){
     return(
       <header>
@@ -115,31 +116,28 @@ export function Home1(){
     );
 }
 
-export function AddReview({addmovies}) {
-  const [values, setValues] = useState(null);
-
-
-  const addMovieDatabase = async (name, date, actors, poster, rating) => {
+export function AddReview() {
+  const addMovieDatabase = async (Title, Rating, Released, Actors, Poster) => {
     let info = {
-      Title: name,
-      Released: date,
-      Actors: actors,
-      Poster: poster,
-      Rating: rating,
+      "Title": Title,
+      "Rating": Rating,
+      "Released": Released,
+      "Actors": Actors,
+      "Poster": Poster.name,
+      
     };
-    setValues(info);
-    addmovies(info);
+    await fetch('/api/add', {
+      method: 'POST',
+      body: JSON.stringify(info),
+    })
   };
 
 
   const formName = useRef();
   const formDate = useRef();
   const formActors = useRef();
-  // const formPoster = useRef();
+  const formPoster = useRef();
   const formRating = useRef();
-  let [formPoster, setPoster] = useState("");
-
-
   const submit = (e) => {
 
     e.preventDefault();
@@ -147,16 +145,17 @@ export function AddReview({addmovies}) {
     const name = formName.current.value;
     const date = formDate.current.value;
     const actors = formActors.current.value;
-    const poster =  setPoster("");
+    const poster =  formPoster.current.files[0];
     const rating = formRating.current.value;
 
 
-    addMovieDatabase(name, date, actors.split(','), poster, rating);
+    addMovieDatabase(name, rating, date, actors.split(','), poster );
     formName.current.value = '';
+    formRating.current.value = '';
     formDate.current.value = '';
     formActors.current.value = '';
-    formPoster.current.value=formPoster;
-    formRating.current.value = '';
+    formPoster.current.value='';
+   
   };
 
   return (
@@ -165,20 +164,11 @@ export function AddReview({addmovies}) {
           <Col>
               <h3> Add New Movie </h3>
               
-              <Form method="post" onSubmit={submit}>
+              <Form method="post" onSubmit={submit} encType="multipart/form-data">
           
               <div className="form-outline">
-          
-                  {/* <label className="form-label" htmlFor="formControlLg">Image</label>
-                  <select ref={formPoster} id="formControlLg" className="form-control form-control-lg" >
-                  {/* <option value=''>Select Image</option> */}
-                    {/* <option value='t.jpg'>Termenator</option>
-                    <option value='v.avif'>Venom</option>
-                    <option value='u.jpg'>Uncharted</option>
-                    <option value='r.jpg'>Rocky</option>
-                    </select> */} 
                     <label className="form-label h4">Movie Poster:<input className="form-control" type="file" accept=".png,.jfif,.jpg,.jpeg"
-                                onChange = {e => setPoster(e.target.files[0])} required /></label>
+                               ref={formPoster}  required /></label>
                     <br/><br/>
                     <br></br>
               </div>
@@ -268,43 +258,16 @@ return (
                 </Button>
                 <Card.Title>Movie Name: {Title}</Card.Title>
               
-                <Card.Text> Actors :{Actors[0]} {Actors[1]} {Actors[2]}  {Actors[3]}</Card.Text>
+                <Card.Text> Actors :{Actors}</Card.Text>
 
                 <Card.Text>Rating : {Rating}</Card.Text>
                 <Card.Text> Released: {Released}</Card.Text>
-              
-                  <Card.Img src={"./images/" + Poster} alt={Title} style={{height:"500px"}} />
-                
+                  <Card.Img src={"/images"+Poster} alt={Title+"movie poster"} style={{height:"500px"}} />
               </Card>    
             </header>  
         </Col>
       </Row>        
-    </Container> 
-
-  // <div className="container d-flex align-items-center justify-content-center position-relative flex-wrap">
-  //   <div className="card d-flex position-relative flex-column">
-  //             <div className='imgContainer'>
-  //                 <img src={"./images/" + Poster} alt={Title} />
-  //             </div>
-  //             <div className="content">
-  //             <Button className="delete" onClick={() => {  onRemove(Title);}}>
-  //                  Remove
-  //              </Button>
-  //                 <h2>Name: {Title}</h2>
-  //                 <p>Actors :{Actors[0]} {Actors[1]} {Actors[2]} </p>
-  //                 <p>Released: {Released}</p>
-  //                 <p>Rating : {Rating}</p>
-  //                 <br></br>
-  //         </div>
- 
-  //       </div>
-        
-  //     </div>
-      
-      
-
-
-    
+    </Container>     
   );
   
 }
