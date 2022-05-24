@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {useRef,useState } from 'react';
+import {useRef,useState ,useEffect} from 'react';
 import image from "./2.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button,Container,Row ,Col,Form, Alert,Card} from'react-bootstrap';
@@ -130,7 +130,7 @@ export function AddReview() {
     await fetch('/api/add', {
       method: 'POST',
       body: JSON.stringify(info),
-        headers: {'Content-Type': 'application/json'}
+      headers: {'Content-Type': 'application/json'}
     })
 
     const formData = new FormData();
@@ -249,7 +249,7 @@ export function Reviews({addmovies}){
           <Button style={{backgroundColor:"aqua",width:"150px"}}>
                 <Link to="/">Home</Link>
           </Button>
-            < AddReview addmovies={addmovies}/>
+          <AddReview addmovies={addmovies}/>
       </>
     )
 }
@@ -282,6 +282,8 @@ return (
   );
   
 }
+
+
 export function Home2({ movies = [], onRemoveMovie = (f) => f }){
 
     return(

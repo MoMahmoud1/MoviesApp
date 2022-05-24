@@ -34,21 +34,7 @@ app.listen(8000,() =>console.log("server is runing"));
 const client = new MongoClient('mongodb://localhost:27017');
 
 
-app.get('/api/data', async (req,res) =>{
-    try{
-        await client.connect();
-        const db = client.db("movies");
-        
-        const moviesInfo  = await db.collection('mymovies').find({}).toArray();
 
-        res.status(200).json(moviesInfo);
-        client.close();
-        
-    }catch(error){
-        res.sendStatus(500);
-    }
-    
-})
 
 app.post('/api/add', async (req, res) => {
     try {
@@ -65,8 +51,43 @@ app.post('/api/add', async (req, res) => {
         res.status(500).json( { message: "Error connecting to db", error});
     }
 });
-// app.get('*', (req, res) => { res.sendFile(path.join(__dirname + '/build/index.html'))}
+app.get('/api/data', async (req,res) =>{
+    try{
+        await client.connect();
+        const db = client.db("movies");
+        
+        const moviesInfo  = await db.collection('mymovies').find({}).toArray();
+
+        res.status(200).json(moviesInfo);
+        client.close();
+        
+    }catch(error){
+        res.sendStatus(500).json({message:"connecting error",error});
+    }
+    
+})
+app.post('/api/removeMovie', async (req, res) => {
+    try {
+      
+        await client.connect();
+        const db = client.db("movies");
+        let del = await db.collection('mymovies').deleteOne( {Title:req.body.Title})
+        
+        
+        if( del.deletedCount == 1) {
+            res.status(200).json({message: `Movie ${req.body.name} deleted`});
+        }
+        else {
+            res.status(200).json({message: "Unable to delete movie"});
+        }
+        client.close();
+    }
+    catch( error) {
+        res.status(500).json( { message: "Error connecting to db", error});
+    }
+});
+
 app.post('/api/upload', upload.single('poster'), function (req, res, next) {
     req.file
   })
-
+  app.get('*', (req, res) => (res.sendFile(path.join(__dirname + '/build/index.html'))))

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 function App() {
   let [movies, setMovies] = useState([]);
+  
 
   useEffect(() => {
     fetch("/api/data")
@@ -18,23 +19,31 @@ function App() {
 
     <div className='movies'>
       <Routes>
-        <Route path="/" element={<Home2 
-         movies={movies}
-         onRemoveMovie={(title) => {
-         const updatedMovies = movies.filter(
-         (movie) => movie.Title !== title
-           );
-           setMovies(updatedMovies);
-           
-         }}
-        />
-      } />
-        <Route path="/reviews" element={<Reviews addmovies ={(newmovies => {
-          console.log("movie=>",newmovies);
-          setMovies([...movies,newmovies])
-        })} />} />
-        </Routes>
-          <div></div>
+            <Route path="/" element={<Home2 
+            movies={movies} onRemoveMovie={ title => {
+              const removeMovie = async () => {
+                  const movieRemoved = await fetch("/api/removeMovie", 
+                      {method: "post", 
+                      body: JSON.stringify({Title: title}),
+                      headers: {"Content-Type": "application/json"}
+                      });
+                  const body = await movieRemoved.json();
+                  if (body.message !== "Unable to delete movie") {
+                      const newMovies = movies.filter(movie => movie.Title !== title);
+                      setMovies(newMovies);
+                  }
+              }
+              removeMovie();
+            }
+          }/>}/>
+
+
+            <Route path="/reviews" element={<Reviews addmovies ={(newmovies => {
+              console.log("movie=>",newmovies);
+              setMovies([...movies,newmovies])
+            })} />} />
+      </Routes>
+          
     </div>
 
 
