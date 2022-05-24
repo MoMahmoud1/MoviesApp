@@ -284,7 +284,13 @@ return (
 }
 
 
-export function Home2({ movies = [], onRemoveMovie = (f) => f }){
+export function Home2({ onRemoveMovie = (f) => f }){
+  let [movies, setMovies] = useState([]);
+  useEffect(() => {
+    fetch("/api/data")
+      .then((response) => response.json())
+      .then(setMovies);
+  }, []);
 
     return(
       <>
