@@ -337,12 +337,11 @@ export function Home2(){
 
   const removeMovie = async (props) => {
     let info = {
-      "_id" : props._id,
-      "name": props.name,
-      "date": props.date,
-      "actors": props.actors,
-      "poster": props.poster,
-      "rating": props.rating
+      "Title": Title,
+      "Rating": Rating,
+      "Released": Released,
+      "Actors": Actors,
+      "Poster": Poster.name,
     };
     
 
@@ -352,7 +351,7 @@ export function Home2(){
       headers: {'Content-Type': 'application/json'}
     })
 
-    fetch('/api/movies')
+    fetch('/api/data')
       .then((response) => response.json())
       .then(setMovies);
   };
