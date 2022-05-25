@@ -335,13 +335,13 @@ export function Home2(){
       
   }, []);
 
-  const removeMovie = async (props) => {
+  const onRemove= async (props) => {
     let info = {
-      "Title": Title,
-      "Rating": Rating,
-      "Released": Released,
-      "Actors": Actors,
-      "Poster": Poster.name,
+      "Title": props.Title,
+      "Rating": props.Rating,
+      "Released":props.Released,
+      "Actors": props.Actors,
+      "Poster": props.Poster,
     };
     
 
@@ -364,16 +364,16 @@ return (
         <Col>
             <header className="app-header">
               <Card className="mb-3" style={{color:"#000"}}>
-                <Button className="delete" onClick={() => {  onRemove(Title);}}>
+                <Button className="delete" onClick={() => {  onRemove(props.info);}}>
                     Remove
                 </Button>
-                <Card.Title>Movie Name: {Title}</Card.Title>
+                <Card.Title>Movie Name: {props.info.Title}</Card.Title>
               
-                <Card.Text> Actors :{Actors}</Card.Text>
+                <Card.Text> Actors :{props.info.Actors}</Card.Text>
 
-                <Card.Text>Rating : {Rating}</Card.Text>
-                <Card.Text> Released: {Released}</Card.Text>
-                  <Card.Img src={"/images/"+Poster} alt={Title} style={{height:"500px"}} />
+                <Card.Text>Rating : {props.info.Rating}</Card.Text>
+                <Card.Text> Released: {props.info.Released}</Card.Text>
+                  <Card.Img src={"/images/"+props.info.Poster} alt={props.info.name} style={{height:"500px"}} />
               </Card>    
             </header>  
         </Col>
@@ -388,19 +388,19 @@ return (
       <>
       <Home1/>
       <div  className="display" >
-        {movies.map((movie,key) =>(
-          <Movie
-          key={key}
-          Title={movie.Title}
-          Actors={movie.Actors}
-          Poster={movie.Poster}
-          Rating={movie.Rating}
-          Released={movie.Released}
-          onRemove={onRemoveMovie}
+       {movies.map((movie) =>{return <Movie key={movie.Title} info={movie}></Movie>
+        //   <Movie
+        //   key={key}
+        //   Title={movie.Title}
+        //   Actors={movie.Actors}
+        //   Poster={movie.Poster}
+        //   Rating={movie.Rating}
+        //   Released={movie.Released}
+        //   onRemove={onRemoveMovie}
           
-        ></Movie>
+        // ></Movie>
             
-        ))}
+  })}
       
         
       </div> 
