@@ -254,10 +254,111 @@ export function Reviews({addmovies}){
     )
 }
 
-export default function Movie({
-  Title,Poster,Released,Actors,Rating,
-  onRemove = (f) => f,
-}) { 
+
+// function Movie({Title,Poster,Released,Actors,Rating,
+//   onRemove = (f) => f,}) {  
+
+// return (
+//    <Container style={{width:"600px"}}>
+//      <Row>
+//         <Col>
+//             <header className="app-header">
+//               <Card className="mb-3" style={{color:"#000"}}>
+//                 <Button className="delete" onClick={() => {  onRemove(Title);}}>
+//                     Remove
+//                 </Button>
+//                 <Card.Title>Movie Name: {Title}</Card.Title>
+              
+//                 <Card.Text> Actors :{Actors}</Card.Text>
+
+//                 <Card.Text>Rating : {Rating}</Card.Text>
+//                 <Card.Text> Released: {Released}</Card.Text>
+//                   <Card.Img src={"/images/"+Poster} alt={Title} style={{height:"500px"}} />
+//               </Card>    
+//             </header>  
+//         </Col>
+//       </Row>        
+//     </Container>     
+//   );
+  
+  
+// }
+
+
+// export function Home2({onRemoveMovie = (f) => f }){
+//   let [movies, setMovies] = useState([]);
+//   useEffect(() => {
+//     fetch("/api/data")
+//       .then((response) => response.json())
+//       .then(setMovies);
+      
+//   }, []);
+
+//   return(
+//       <>
+//       <Home1/>
+//       <div  className="display" >
+//         {movies.map((movie,key) =>(
+//           <Movie
+//           key={key}
+//           Title={movie.Title}
+//           Actors={movie.Actors}
+//           Poster={movie.Poster}
+//           Rating={movie.Rating}
+//           Released={movie.Released}
+//           onRemove={onRemoveMovie}
+          
+//         ></Movie>
+            
+//         ))}
+      
+        
+//       </div> 
+//       <div>
+//     <Alert>
+//      <Footer year = {new Date().getFullYear()} />
+//     </Alert>
+//      </div>
+//       </>
+
+//     );
+//   }
+
+
+
+export function Home2(){
+  let [movies, setMovies] = useState([]);
+  useEffect(() => {
+    fetch("/api/data")
+      .then((response) => response.json())
+      .then(setMovies);
+      
+  }, []);
+
+  const removeMovie = async (props) => {
+    let info = {
+      "_id" : props._id,
+      "name": props.name,
+      "date": props.date,
+      "actors": props.actors,
+      "poster": props.poster,
+      "rating": props.rating
+    };
+    
+
+    await fetch('/api/removeMovie', {
+      method: 'POST',
+      body: JSON.stringify(info),
+      headers: {'Content-Type': 'application/json'}
+    })
+
+    fetch('/api/movies')
+      .then((response) => response.json())
+      .then(setMovies);
+  };
+ 
+function Movie(props) {  
+
 return (
    <Container style={{width:"600px"}}>
      <Row>
@@ -281,18 +382,10 @@ return (
     </Container>     
   );
   
+  
 }
 
-
-export function Home2({ onRemoveMovie = (f) => f }){
-  let [movies, setMovies] = useState([]);
-  useEffect(() => {
-    fetch("/api/data")
-      .then((response) => response.json())
-      .then(setMovies);
-  }, []);
-
-    return(
+  return(
       <>
       <Home1/>
       <div  className="display" >
@@ -305,9 +398,12 @@ export function Home2({ onRemoveMovie = (f) => f }){
           Rating={movie.Rating}
           Released={movie.Released}
           onRemove={onRemoveMovie}
+          
         ></Movie>
             
         ))}
+      
+        
       </div> 
       <div>
     <Alert>

@@ -26,16 +26,22 @@ function App() {
                       {method: "post", 
                       body: JSON.stringify({Title: title}),
                       headers: {"Content-Type": "application/json"}
-                      });
-                  const body = await movieRemoved.json();
-                  if (body.message !== "Unable to delete movie") {
-                      const newMovies = movies.filter(movie => movie.Title !== title);
-                      setMovies(newMovies);
-                  }
+                      })
+
+
+                 // const body = await movieRemoved.json();
+                  // if (body.message !== "Unable to delete movie") {
+                  //     const newMovies = movies.filter(movie => movie.Title !== title);
+                  //     setMovies(newMovies);
+                  // }
               }
               removeMovie();
+        
+
             }
-          }/>}/>
+          }/>}
+          
+          />
 
 
             <Route path="/reviews" element={<Reviews addmovies ={(newmovies => {
