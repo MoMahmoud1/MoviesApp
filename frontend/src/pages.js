@@ -2,12 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {useRef,useState ,useEffect} from 'react';
 import image from "./2.jpg";
+import image1 from "./4.jpg"
+import image2 from "./5.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button,Container,Row ,Col,Form, Alert,Card} from'react-bootstrap';
 import {FaGithub} from 'react-icons/fa'; 
 import {FaLinkedin} from 'react-icons/fa'; 
 import {AiOutlineMail} from 'react-icons/ai';
 import {MdPictureAsPdf} from 'react-icons/md';
+
 
 
 function Header(props){
@@ -17,7 +20,7 @@ function Header(props){
         <h1>{props.name} Movies Reviews Website</h1>
         </div>
         <br></br>
-        <br></br>
+       
       </header>
     );
   }
@@ -27,6 +30,21 @@ function Header(props){
     return(
       <main>
            <img   src={image} alt="site logo " style={{borderRadius:"20px",width:"50%"}} />  
+           <br></br>
+           <br></br>
+           <section>
+             <h3> Click to browse</h3>
+           <a href="https://www.netflix.com/ca/">
+           <img  src={image1} alt="" style={{borderRadius:"20px",width:"10%",paddingRight:"5px"}} />
+           </a>
+        
+           <a href="https://www.disneyplus.com/en-ca/welcome/stream-now">
+           <img  src={image2} alt="" style={{borderRadius:"20px",width:"10%",height:"80px"}} />
+           </a>
+           
+           </section>
+           
+           <br></br>
       </main>
     );
   }
@@ -178,13 +196,13 @@ export function AddReview() {
               <Form method="post" onSubmit={submit} encType="multipart/form-data">
           
               <div className="form-outline">
-                    <label className="form-label h4">Movie Poster:<input className="form-control" type="file" accept=".png,.jfif,.jpg,.jpeg"
+                    <label className="form-label h4">Movie Poster<input className="form-control" type="file" accept=".png,.jfif,.jpg,.jpeg"
                                ref={formPoster}  required /></label>
                     <br/><br/>
                     <br></br>
               </div>
               <div className={"form-outline"}>
-                    <label className={"form-label"} htmlFor={"formControlLg" } >Title</label>
+                    <label className={"form-label h3"} htmlFor={"formControlLg" } >Title</label>
                     <input  id={"formControlLg"} className={"form-control form-control-lg"}
                       type={'text'}
                       ref={formName}
@@ -195,18 +213,18 @@ export function AddReview() {
                     <br></br>
 
               <div className="form-group">
-                    <label htmlFor="exampleFormControlInput1">Actors</label>
+                    <label htmlFor="exampleFormControlInput1" className={"form-label h3"}>Actors</label>
                     <input className="form-control"
                       type={'text'}
                       ref={formActors}
-                      required
+                      required placeholder="actor1,actor2,actor3,actor4"
                     ></input>
                     <br></br>
                     <br></br>
               </div>     
 
               <div className="form-group">
-                  <label htmlFor="exampleFormControlInput1">Rate</label>
+                  <label htmlFor="exampleFormControlInput1" className={"form-label h3"}>Rate</label>
                     <select  ref={formRating} required  className="form-control" id="exampleFormControlSelect1" >
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -218,7 +236,7 @@ export function AddReview() {
                     <br></br>
               </div>
               <div className="form-group">
-                    <label htmlFor="exampleFormControlInput1" >Released</label>
+                    <label htmlFor="exampleFormControlInput1" className={"form-label h3"} >Released</label>
                     <input className="form-control"
                       type={'date'}
                       ref={formDate}
@@ -359,11 +377,13 @@ export function Home2(){
 function Movie(props) {  
 
 return (
+  
    <Container style={{width:"600px"}}>
      <Row>
         <Col>
             <header className="app-header">
-              <Card className="mb-3" style={{color:"#000"}}>
+              
+              <Card  style={{color:"#000"}}>
                 <Button className="delete" onClick={() => {  onRemove(props.info);}}>
                     Remove
                 </Button>
@@ -373,12 +393,17 @@ return (
 
                 <Card.Text>Rating : {props.info.Rating}</Card.Text>
                 <Card.Text> Released: {props.info.Released}</Card.Text>
-                  <Card.Img src={"/images/"+props.info.Poster} alt={props.info.name} style={{height:"500px"}} />
-              </Card>    
+                
+                  <Card.Img src={"/images/"+props.info.Poster} alt={props.info.name} className="img-fluid " style={{height:"500px"}} />
+                 
+              </Card>  
+               
             </header>  
         </Col>
       </Row>        
-    </Container>     
+      <br></br>
+    </Container>   
+      
   );
   
   
@@ -387,7 +412,7 @@ return (
   return(
       <>
       <Home1/>
-      <div  className="display" >
+      <div>
        {movies.map((movie) =>{return <Movie key={movie.Title} info={movie}></Movie>
         //   <Movie
         //   key={key}
@@ -399,11 +424,11 @@ return (
         //   onRemove={onRemoveMovie}
           
         // ></Movie>
+       
             
   })}
       
-        
-      </div> 
+       </div> 
       <div>
     <Alert>
      <Footer year = {new Date().getFullYear()} />
