@@ -13,99 +13,87 @@ import {MdPictureAsPdf} from 'react-icons/md';
 
 
 
+
+
 function Header(props){
-    return(
-      <header>
-        <div id ="header">
+  return(
+    <header>
+      <div id ="header">
         <h1>{props.name} Movies Reviews Website</h1>
-        </div>
-        <br></br>
-       
-      </header>
-    );
-  }
+      </div>
+      <br></br>
+    </header>
+  );
+}
   
   
-  function Main(){
+function Main(){
     return(
       <main>
            <img   src={image} alt="site logo " style={{borderRadius:"20px",width:"50%"}} />  
-           <br></br>
-           <br></br>
            <section>
-             <h3> Click to browse</h3>
+           <Container>
+             <h3 style={{color:"white"}}> Click to browse</h3>
            <a href="https://www.netflix.com/ca/">
            <img  src={image1} alt="" style={{borderRadius:"20px",width:"10%",paddingRight:"5px"}} />
+           {/* <RiNetflixFill></RiNetflixFill> */}
            </a>
-        
            <a href="https://www.disneyplus.com/en-ca/welcome/stream-now">
            <img  src={image2} alt="" style={{borderRadius:"20px",width:"10%",height:"80px"}} />
            </a>
-           
+           </Container>
            </section>
-           
            <br></br>
       </main>
-    );
-  }
+  );
+}
+
   
-  
-  function Footer(props){
-    return(
-    
-        <footer className="page-footer font-small blue pt-4">
-          <div className="container-fluid text-center text-md-left">
-            <div className="row">
-              <div className="col-md-6 mt-md-0 mt-3">
-                <h5 className="text-uppercase">MOhamed  FULL STACK DEVELOPER </h5>
-                
-                
-                <ul className="list-unstyled">
-                  <li>
-                  <AiOutlineMail> Mohamed.Mahmoud70@ed.cna.nl.ca</AiOutlineMail>
-                  <a>Mohamed.Mahmoud70@ed.cna.nl.ca</a>
-                  </li>
-                </ul>
-
-              </div>
-                  <div className="col-md-3 mb-md-0 mb-3">
-                <h5 className="text-uppercase">Links</h5>
-
-                <ul className="list-unstyled">
-                  <li>
-                    <FaGithub> </FaGithub>
-                    <a href="https://github.com/mohamed-baioumy">Github</a>
-                  </li>
-                  <li>
-                    <FaLinkedin></FaLinkedin>
-                    <a href="https://www.linkedin.com/in/mohamed-mahmoud-0b618112a">linkedin</a>
-            
-                  </li>
-                  <li>
-                  <MdPictureAsPdf></MdPictureAsPdf>
-                    <a href=" https://acrobat.adobe.com/link/review?uri=urn:aaid:scds:US:669061e0-3a6e-3412-b598-2566204b116c">Resume</a>
-            
-                  </li>
-                </ul>
-
-              </div>
+function Footer(props){
+  return(
+      <footer className="page-footer font-small blue pt-4">
+        <div className="container-fluid text-center text-md-left">
+          <div className="row">
+            <div className="col-md-6 mt-md-0 mt-3">
+              <h5 className="text-uppercase">MOhamed  FULL STACK DEVELOPER </h5>
+              <ul className="list-unstyled">
+                <li>
+                <AiOutlineMail> Mohamed.Mahmoud70@ed.cna.nl.ca</AiOutlineMail>
+                <a>Mohamed.Mahmoud70@ed.cna.nl.ca</a>
+                </li>
+              </ul>
             </div>
-          
-
+            <div className="col-md-3 mb-md-0 mb-3">
+              <h5 className="text-uppercase">Links</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <FaGithub> </FaGithub>
+                  <a href="https://github.com/mohamed-baioumy">Github</a>
+                </li>
+                <li>
+                  <FaLinkedin></FaLinkedin>
+                  <a href="https://www.linkedin.com/in/mohamed-mahmoud-0b618112a">linkedin</a>       
+                </li>
+                <li>
+                <MdPictureAsPdf></MdPictureAsPdf>
+                  <a href=" https://acrobat.adobe.com/link/review?uri=urn:aaid:scds:US:669061e0-3a6e-3412-b598-2566204b116c">Resume</a>
+                </li>
+              </ul>
+            </div>
           </div>
-
-        <p>CopyRight {props.year}</p>
-      </footer>
-    );
-  }
+        </div>
+      <p>CopyRight {props.year}</p>
+    </footer>
+);
+}
 
 export function Home1(){
     return(
       <>
      <Container>
-          <Row >
-              <Header name="MO"/>
-                <Button
+        <Row >
+          <Header name="MO"/>
+              <Button
                  style={{width: "50%",
                  backgroundColor:"#4CAF50",
                  color: "white",
@@ -115,8 +103,8 @@ export function Home1(){
                  borderRadius:"20px",
                  cursor:"pointer"}} >
                   <Link to="/">Home</Link>
-                  </Button>
-                  <Button
+              </Button>
+              <Button
                    style={{width: "50%",
                    backgroundColor:"#4CAF50",
                    color: "white",
@@ -126,9 +114,9 @@ export function Home1(){
                    borderRadius:"20px",
                    cursor:"pointer"}}>
                   <Link to = "reviews"> Add Movie</Link> 
-                  </Button>  
-                  <Main/>     
-          </Row> 
+                </Button>  
+                <Main/>     
+        </Row> 
       </Container>
       </>
     );
@@ -189,11 +177,11 @@ export function AddReview() {
 
   return (
     <Container fluid="md" style={{backgroundColor:" #f2f2f2", borderRadius:"20px"}} >
-          <Row >
-          <Col>
+      <Row >
+        <Col>
               <h3> Add New Movie </h3>
               
-              <Form method="post" onSubmit={submit} encType="multipart/form-data">
+          <Form method="post" onSubmit={submit} encType="multipart/form-data">
           
               <div className="form-outline">
                     <label className="form-label h4">Movie Poster<input className="form-control" type="file" accept=".png,.jfif,.jpg,.jpeg"
@@ -255,19 +243,19 @@ export function AddReview() {
                   borderRadius:"20px",
                   cursor:"pointer"}}
                 > Submit </Button>
-              </Form>
-              </Col>
-            </Row>
+            </Form>
+          </Col>
+      </Row>
     </Container>
   );
 }
 export function Reviews({addmovies}){
     return(
       <>
-          <Button style={{backgroundColor:"aqua",width:"150px"}}>
-                <Link to="/">Home</Link>
-          </Button>
-          <AddReview addmovies={addmovies}/>
+        <Button style={{backgroundColor:"aqua",width:"150px"}}>
+          <Link to="/">Home</Link>
+        </Button>
+        <AddReview addmovies={addmovies}/>
       </>
     )
 }
@@ -411,29 +399,27 @@ return (
 
   return(
       <>
-      <Home1/>
-      <div>
-       {movies.map((movie) =>{return <Movie key={movie.Title} info={movie}></Movie>
-        //   <Movie
-        //   key={key}
-        //   Title={movie.Title}
-        //   Actors={movie.Actors}
-        //   Poster={movie.Poster}
-        //   Rating={movie.Rating}
-        //   Released={movie.Released}
-        //   onRemove={onRemoveMovie}
-          
-        // ></Movie>
-       
+        <Home1/>
+        
+        {movies.map((movie) =>{return <Movie key={movie.Title} info={movie}></Movie>
+          //   <Movie
+          //   key={key}
+          //   Title={movie.Title}
+          //   Actors={movie.Actors}
+          //   Poster={movie.Poster}
+          //   Rating={movie.Rating}
+          //   Released={movie.Released}
+          //   onRemove={onRemoveMovie}
             
-  })}
-      
-       </div> 
-      <div>
-    <Alert>
-     <Footer year = {new Date().getFullYear()} />
-    </Alert>
-     </div>
+          // ></Movie>
+        
+
+        })} 
+        <div style={{color:"white"}}>
+          <Alert style={{color:"white",backgroundColor:"black",marginBottom:"-20px"}}>
+            <Footer year = {new Date().getFullYear()} />
+          </Alert>
+        </div>
       </>
 
     );
